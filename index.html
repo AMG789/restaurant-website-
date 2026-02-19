@@ -1,0 +1,673 @@
+
+ <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم الأصالة | تجربة طعام فريدة</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #8B4513;
+        }
+        
+        .logo span {
+            color: #DAA520;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #8B4513;
+        }
+        
+        .cta-nav {
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .cta-nav:hover {
+            background: #DAA520;
+            color: #1a1a2e;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-badge {
+            background: #DAA520;
+            color: #1a1a2e;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #DAA520;
+            color: #1a1a2e;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+            margin: 0 0.5rem;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+        }
+        
+        .cta-button-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        /* Menu Section */
+        .menu {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #8B4513;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+        
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: white;
+            border: 2px solid #8B4513;
+            color: #8B4513;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .category-btn.active,
+        .category-btn:hover {
+            background: #8B4513;
+            color: white;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .menu-image {
+            height: 200px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .menu-info {
+            padding: 1.5rem;
+        }
+        
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-name {
+            font-size: 1.3rem;
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        .menu-price {
+            font-size: 1.2rem;
+            color: #DAA520;
+            font-weight: bold;
+        }
+        
+        .menu-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background: #DAA520;
+            color: #1a1a2e;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            height: 400px;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+        }
+        
+        .about-text h2 {
+            color: #8B4513;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .about-text p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+        
+        .features-list li {
+            padding: 0.5rem 0;
+            color: #333;
+        }
+        
+        .features-list li:before {
+            content: "✓ ";
+            color: #DAA520;
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+        
+        /* Reservation Section */
+        .reservation {
+            padding: 4rem 0;
+            background: #8B4513;
+            color: white;
+            text-align: center;
+        }
+        
+        .reservation h2 {
+            color: #DAA520;
+            margin-bottom: 1rem;
+        }
+        
+        .reservation-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .reservation-form input,
+        .reservation-form select {
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .reservation-form button {
+            background: #DAA520;
+            color: #1a1a2e;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            grid-column: 1 / -1;
+        }
+        
+        .reservation-form button:hover {
+            background: white;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #5D4037;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: #DAA520;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 250px;
+                font-size: 5rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">مطعم <span>الأصالة</span></div>
+                <ul class="nav-links">
+                    <li><a href="#menu">القائمة</a></li>
+                    <li><a href="#about">عن المطعم</a></li>
+                    <li><a href="#reservation">الحجز</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                </ul>
+                <a href="tel:0500000000" class="cta-nav">اتصل الآن</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">⭐ تجربة طعام فريدة</div>
+            <h1>مذاق أصيل في كل قضمة</h1>
+            <p>أشهى المأكولات العربية والعالمية بإعداد شيفات محترفين في أجواء عائلية راقية</p>
+            <a href="#reservation" class="cta-button">احجز طاولتك</a>
+            <a href="#menu" class="cta-button cta-button-outline">شوف القائمة</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2 class="section-title">قائمتنا المميزة</h2>
+            <p class="section-subtitle">أشهى الأطباق المعدة بأجود المكونات</p>
+            
+            <div class="menu-categories">
+                <button class="category-btn active">الكل</button>
+                <button class="category-btn">مشويات</button>
+                <button class="category-btn">مقبلات</button>
+                <button class="category-btn">أطباق رئيسية</button>
+                <button class="category-btn">حلويات</button>
+            </div>
+            
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-image">🥩</div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3 class="menu-name">كباب مشوي</h3>
+                            <span class="menu-price">85 درهم</span>
+                        </div>
+                        <p class="menu-description">كباب لحم غنم مشوي على الفحم مع بهارات خاصة</p>
+                        <button class="add-to-cart">أضف للطلب</button>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-image">🍗</div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3 class="menu-name">دجاج مشوي</h3>
+                            <span class="menu-price">65 درهم</span>
+                        </div>
+                        <p class="menu-description">دجاج مشوي بالفرن مع الخضار والأرز البسمتي</p>
+                        <button class="add-to-cart">أضف للطلب</button>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-image">🥗</div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3 class="menu-name">سلطة فتوش</h3>
+                            <span class="menu-price">35 درهم</span>
+                        </div>
+                        <p class="menu-description">خضار طازجة مع سماق وسميد مقلي ومكونات خاصة</p>
+                        <button class="add-to-cart">أضف للطلب</button>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-image">🍲</div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3 class="menu-name">مقلوبة</h3>
+                            <span class="menu-price">55 درهم</span>
+                        </div>
+                        <p class="menu-description">أرز مع خضار وباذنجان ولحم أو دجاج حسب الطلب</p>
+                        <button class="add-to-cart">أضف للطلب</button>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-image">🧆</div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3 class="menu-name">حمص بيروتي</h3>
+                            <span class="menu-price">25 درهم</span>
+                        </div>
+                        <p class="menu-description">حمص مع طحينة و زيت زيتون و بابريكا</p>
+                        <button class="add-to-cart">أضف للطلب</button>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-image">🍮</div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3 class="menu-name">أم علي</h3>
+                            <span class="menu-price">30 درهم</span>
+                        </div>
+                        <p class="menu-description">حلوى شرقية تقليدية بالحليب والمكسرات</p>
+                        <button class="add-to-cart">أضف للطلب</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">👨‍🍳</div>
+                <div class="about-text">
+                    <h2>قصة مطعم الأصالة</h2>
+                    <p>منذ عام 2010، نقدم لكم أصالة الطعام العربي بأجود المكونات وأفضل الخدمات. مطعم الأصالة ليس مجرد مكان للأكل، بل هو تجربة ثقافية تجمع بين الماضي العريق والحاضر المتميز.</p>
+                    <p>شيفاتنا المحترفون يحرصون على تقديم أطباق تبقى في الذاكرة، مع الحفاظ على النكهة الأصيلة في كل قضمة.</p>
+                    
+                    <ul class="features-list">
+                        <li>مكونات طازجة يوميًا</li>
+                        <li>شيفات محترفون</li>
+                        <li>أجواء عائلية راقية</li>
+                        <li>خدمة ممتازة</li>
+                        <li>أسعار منافسة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="reservation" id="reservation">
+        <div class="container">
+            <h2>احجز طاولتك الآن</h2>
+            <p>احجز مكانك مسبقًا واستمتع بتجربة طعام لا تُنسى</p>
+            
+            <form class="reservation-form">
+                <input type="text" placeholder="الاسم" required>
+                <input type="tel" placeholder="رقم الهاتف" required>
+                <input type="date" required>
+                <select required>
+                    <option value="">عدد الأشخاص</option>
+                    <option value="2">شخصين</option>
+                    <option value="4">4 أشخاص</option>
+                    <option value="6">6 أشخاص</option>
+                    <option value="8+">8+ أشخاص</option>
+                </select>
+                <select required>
+                    <option value="">الوقت</option>
+                    <option value="12:00">12:00 ظهرًا</option>
+                    <option value="13:00">1:00 مساءً</option>
+                    <option value="14:00">2:00 مساءً</option>
+                    <option value="19:00">7:00 مساءً</option>
+                    <option value="20:00">8:00 مساءً</option>
+                    <option value="21:00">9:00 مساءً</option>
+                </select>
+                <button type="submit">تأكيد الحجز</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">زورنا أو تواصل معنا</h2>
+            <p class="section-subtitle">نحن هنا لخدمتك على مدار الأسبوع</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <span>دبي، الإمارات العربية المتحدة</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <span>050-4426398</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🕐</span>
+                    <span>مفتوح يوميًا 12:00 ظ - 11:00 م</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>مطعم الأصالة</h3>
+            <div class="social-links">
+                <a href="#">📘</a>
+                <a href="#">📸</a>
+                <a href="#">🐦</a>
+                <a href="https://wa.me/971504426398">💬</a>
+            </div>
+            <p>© 2025 مطعم الأصالة. جميع الحقوق محفوظة.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">تصميم وتطوير: AMG Systems</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple category filter
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Form submission
+        document.querySelector('.reservation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('تم استلام طلب الحجز! سنتواصل معك قريبًا لتأكيد الحجز.');
+        });
+
+        // Add to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const originalText = this.textContent;
+                this.textContent = '✓ تم الإضافة';
+                this.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '#8B4513';
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
